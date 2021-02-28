@@ -3,6 +3,7 @@ package com.example.managementsystem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -10,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.managementsystem.ui.home.HomeFragment;
+import com.example.managementsystem.ui.home.HomeViewModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,8 +49,12 @@ public class MainActivity extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             String usernam = snapshot.child("username").getValue().toString();
                             String passwor = snapshot.child("password").getValue().toString();
-                            if(user.compareTo(usernam)==0 && passwor.compareTo(pass)==0)
-                                Toast.makeText(MainActivity.this,"top",Toast.LENGTH_LONG).show();
+                            if(user.compareTo(usernam)==0 && passwor.compareTo(pass)==0) {
+                                Toast.makeText(MainActivity.this, "top", Toast.LENGTH_LONG).show();
+                                //Intent teacher = new Intent(this, HomeViewModel.class);
+                                //startActivity(teacher);
+                                display();
+                            }
                             else{
                                 username.setText("");
                                 password.setText("");
@@ -65,5 +72,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    public void display(){
+        Intent teacher = new Intent(this, drawer_activity.class);
+        startActivity(teacher);
     }
 }
