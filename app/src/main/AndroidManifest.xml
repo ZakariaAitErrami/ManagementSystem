@@ -12,7 +12,7 @@
         <activity
             android:name=".drawer_activity"
             android:label="@string/title_activity_drawer_activity"
-            android:theme="@style/Theme.ManagementSystem.NoActionBar"></activity>
+            android:theme="@style/Theme.ManagementSystem.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

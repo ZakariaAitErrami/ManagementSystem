@@ -11,8 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.managementsystem.ui.home.HomeFragment;
-import com.example.managementsystem.ui.home.HomeViewModel;
+import com.example.managementsystem.FragementMenu.MarchandiseFragment;
+import com.example.managementsystem.FragementMenu.FactureFragment;
+import com.example.managementsystem.FragementMenu.ClientFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
                     myRef.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                             String usernam = snapshot.child("username").getValue().toString();
                             String passwor = snapshot.child("password").getValue().toString();
                             if(user.compareTo(usernam)==0 && passwor.compareTo(pass)==0) {
