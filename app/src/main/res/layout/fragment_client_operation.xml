@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragementMenu.ClientOperation">
+
+    <LinearLayout
+        android:id="@+id/customerForm"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="20pt"
+        android:paddingRight="20pt">
+
+        <EditText
+            android:id="@+id/id_client"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16sp"
+            android:layout_marginBottom="16sp"
+            android:drawableLeft="@drawable/id"
+            android:hint="Customer Id" />
+
+        <EditText
+            android:id="@+id/nom_client"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:layout_marginTop="16sp"
+            android:layout_marginBottom="16sp"
+            android:drawableLeft="@drawable/name"
+            android:hint="Full name" />
+
+        <EditText
+            android:id="@+id/telephone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16sp"
+            android:layout_marginBottom="16sp"
+            android:maxLines="1"
+            android:drawableLeft="@drawable/phone"
+            android:hint="Phone Number"
+            android:inputType="phone" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16sp"
+            android:maxLines="1"
+            android:layout_marginBottom="16sp"
+            android:drawableLeft="@drawable/email"
+            android:hint="Email" />
+
+        <EditText
+            android:id="@+id/addresse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16sp"
+            android:layout_marginBottom="16sp"
+            android:drawableLeft="@drawable/address"
+            android:hint="Address" />
+
+        <Button
+            android:id="@+id/addC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Save"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+</FrameLayout>

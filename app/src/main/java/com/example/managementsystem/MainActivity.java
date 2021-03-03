@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                             String usernam = snapshot.child("username").getValue().toString();
                             String passwor = snapshot.child("password").getValue().toString();
                             if(user.compareTo(usernam)==0 && passwor.compareTo(pass)==0) {
-                                Toast.makeText(MainActivity.this, "top", Toast.LENGTH_LONG).show();
+                                Toast.makeText(MainActivity.this, "Successfully logged in", Toast.LENGTH_LONG).show();
                                 //Intent teacher = new Intent(this, HomeViewModel.class);
                                 //startActivity(teacher);
                                 display();

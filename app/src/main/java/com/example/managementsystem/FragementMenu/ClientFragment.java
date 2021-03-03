@@ -3,11 +3,15 @@ package com.example.managementsystem.FragementMenu;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.managementsystem.R;
 
@@ -26,7 +30,7 @@ public class ClientFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;*/
-
+    private ImageButton btnadd;
     public ClientFragment() {
         // Required empty public constructor
     }
@@ -59,6 +63,20 @@ public class ClientFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_client, container, false);
         //Toast(getContext()
+        btnadd = (ImageButton) view.findViewById(R.id.addbtn);
+        btnadd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayNewFragment();
+            }
+        });
         return view;
+    }
+    public void displayNewFragment(){
+        ClientOperation newGamefragment = new ClientOperation();
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.ope, newGamefragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }

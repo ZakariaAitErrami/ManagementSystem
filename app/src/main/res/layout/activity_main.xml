@@ -25,12 +25,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16sp"
         android:hint="Username"
+        android:maxLines="1"
         android:layout_marginBottom="16sp"/>
     <EditText
         android:id="@+id/ed_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
+        android:maxLines="1"
         android:hint="Password"
         android:layout_marginBottom="16sp"/>
     <Button
