@@ -21,5 +21,9 @@
             android:background="@drawable/roundbtn"
             android:clickable="true"
             android:src="@drawable/add"></ImageButton>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hello how are you doing!!!"/>
     </RelativeLayout>
 </FrameLayout>

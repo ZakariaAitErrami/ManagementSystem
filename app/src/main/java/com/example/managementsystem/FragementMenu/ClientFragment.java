@@ -1,5 +1,6 @@
 package com.example.managementsystem.FragementMenu;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.managementsystem.R;
+import com.example.managementsystem.drawer_activity;
 
 /**
  //* A simple {@link Fragment} subclass.
@@ -73,10 +75,12 @@ public class ClientFragment extends Fragment {
         return view;
     }
     public void displayNewFragment(){
-        ClientOperation newGamefragment = new ClientOperation();
+        /*ClientOperation newGamefragment = new ClientOperation();
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.ope, newGamefragment);
         fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        fragmentTransaction.commit();*/
+        Intent teacher = new Intent(getContext(), ClientAdd.class);
+        startActivity(teacher);
     }
 }
