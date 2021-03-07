@@ -10,6 +10,9 @@ public class Client {
         this.addresse = addresse;
         this.cin = cin;
     }
+    public Client(){
+
+    }
 
     public String getName() {
         return name;
@@ -41,6 +44,11 @@ public class Client {
 
     public void setAddresse(String addresse) {
         this.addresse = addresse;
+    }
+
+    @Override
+    public String toString() {
+        return name+"\n"+telephone;
     }
 
     public String getCin() {

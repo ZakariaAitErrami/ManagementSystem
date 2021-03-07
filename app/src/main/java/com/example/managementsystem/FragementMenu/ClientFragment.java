@@ -3,19 +3,32 @@ package com.example.managementsystem.FragementMenu;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.managementsystem.Classes.Client;
 import com.example.managementsystem.R;
 import com.example.managementsystem.drawer_activity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.EventListener;
 
 /**
  //* A simple {@link Fragment} subclass.
@@ -33,6 +46,7 @@ public class ClientFragment extends Fragment {
     private String mParam1;
     private String mParam2;*/
     private ImageButton btnadd;
+    private ListView listview;
     public ClientFragment() {
         // Required empty public constructor
     }
@@ -70,6 +84,29 @@ public class ClientFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 displayNewFragment();
+            }
+        });
+        listview = (ListView) view.findViewById(R.id.listcustomer);
+        ArrayList<String> list = new ArrayList<>();
+        ArrayAdapter adapter = new ArrayAdapter<String>(getContext(), R.layout.list_client_item,R.id.custinfo,list);
+        listview.setAdapter(adapter);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("customers");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                for (DataSnapshot sn : snapshot.getChildren()){
+                    Client client = sn.getValue(Client.class);
+                    String txt = client.toString();
+                    //list.add(sn.getValue().toString());
+                    list.add(txt);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
         return view;
