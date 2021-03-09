@@ -1,5 +1,7 @@
 package com.example.managementsystem.FragementMenu;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -7,11 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -21,14 +26,18 @@ import android.widget.Toast;
 import com.example.managementsystem.Classes.Client;
 import com.example.managementsystem.R;
 import com.example.managementsystem.drawer_activity;
+import com.github.ivbaranov.mli.MaterialLetterIcon;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.EventListener;
+import java.util.Random;
 
 /**
  //* A simple {@link Fragment} subclass.
@@ -45,8 +54,13 @@ public class ClientFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;*/
+    private int mBackground;
     private ImageButton btnadd;
     private ListView listview;
+    MaterialLetterIcon mIcon;
+    private static final Random RANDOM = new Random();
+    private final TypedValue mTypedValue = new TypedValue();
+    private int[] mMaterialColors;
     public ClientFragment() {
         // Required empty public constructor
     }
@@ -78,6 +92,8 @@ public class ClientFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_client, container, false);
+       // mMaterialColors = this.getResources().getIntArray(R.array.colors);
+
         //Toast(getContext()
         btnadd = (ImageButton) view.findViewById(R.id.addbtn);
         btnadd.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +103,8 @@ public class ClientFragment extends Fragment {
             }
         });
         listview = (ListView) view.findViewById(R.id.listcustomer);
+
+        mIcon = (MaterialLetterIcon) view.findViewById(R.id.icon);
         ArrayList<String> list = new ArrayList<>();
         ArrayAdapter adapter = new ArrayAdapter<String>(getContext(), R.layout.list_client_item,R.id.custinfo,list);
         listview.setAdapter(adapter);
@@ -98,7 +116,7 @@ public class ClientFragment extends Fragment {
                 for (DataSnapshot sn : snapshot.getChildren()){
                     Client client = sn.getValue(Client.class);
                     String txt = client.toString();
-                    //list.add(sn.getValue().toString());
+
                     list.add(txt);
                 }
                 adapter.notifyDataSetChanged();
@@ -109,6 +127,30 @@ public class ClientFragment extends Fragment {
 
             }
         });
+
+        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                int which = position;
+                new AlertDialog.Builder(getContext()).setIcon(android.R.drawable.ic_delete)
+                        .setTitle("Are you sure?").setMessage("Do you want to delete this customer")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String n = list.get(position);
+                               // Toast.makeText(getContext(),n,Toast.LENGTH_LONG).show();
+                                String[] a = n.split("\n");
+                                String name = a[0];
+                                list.remove(n);
+                                adapter.notifyDataSetChanged();
+                                deleteRecord(name);
+
+                            }
+                        }).setNegativeButton("No",null).show();
+                return true;
+            }
+        });
+
         return view;
     }
     public void displayNewFragment(){
@@ -119,5 +161,28 @@ public class ClientFragment extends Fragment {
         fragmentTransaction.commit();*/
         Intent teacher = new Intent(getContext(), ClientAdd.class);
         startActivity(teacher);
+    }
+    public void deleteRecord(String name){
+        //DatabaseReference reference = FirebaseDatabase.getInstance().getReference("customers").child(id);
+        //Task<Void> mTask = reference.removeValue();
+        //reference.removeValue();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        Query applesQuery = ref.child("customers").orderByChild("name").equalTo(name);
+
+        applesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
+                    appleSnapshot.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //Log.e(TAG, "onCancelled", databaseError.toException());
+            }
+        });
+
+
     }
 }

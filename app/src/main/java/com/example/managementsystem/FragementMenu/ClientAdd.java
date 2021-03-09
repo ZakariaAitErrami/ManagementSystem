@@ -13,8 +13,11 @@ import android.widget.Toast;
 import com.example.managementsystem.Classes.Client;
 import com.example.managementsystem.R;
 import com.example.managementsystem.drawer_activity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ClientAdd extends AppCompatActivity {
     private EditText id,name,phone,email,add;
@@ -58,9 +61,31 @@ public class ClientAdd extends AppCompatActivity {
         }
         else{
             Client c = new Client(n,p,e,a,ID);
-            clientDbRef.push().setValue(c);
-            Toast.makeText(this,"Customer data has been inserted successfully",Toast.LENGTH_LONG).show();
-            displayHome();
+           // clientDbRef.push().setValue(c);
+            //Toast.makeText(this,"Customer data has been inserted successfully",Toast.LENGTH_LONG).show();
+            //displayHome();
+            clientDbRef.orderByChild("cin").equalTo(c.getCin()).addListenerForSingleValueEvent(new ValueEventListener(){
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot){
+                    if(dataSnapshot.exists()) {
+                        Toast.makeText(getApplicationContext(), "The customer ID you have entred already exists", Toast.LENGTH_LONG).show();
+                         displayHome();
+                    }
+                    else{
+                        clientDbRef.push().setValue(c);
+                        Toast.makeText(getApplicationContext(),"Customer data has been inserted successfully",Toast.LENGTH_LONG).show();
+                        displayHome();
+                    }
+
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
+
         }
 
     }
@@ -73,4 +98,5 @@ public class ClientAdd extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();*/
     }
+
 }
