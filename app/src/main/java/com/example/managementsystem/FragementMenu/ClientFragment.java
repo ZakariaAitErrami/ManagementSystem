@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,10 +59,11 @@ public class ClientFragment extends Fragment {
     private int mBackground;
     private ImageButton btnadd;
     private ListView listview;
-    MaterialLetterIcon mIcon;
+    //MaterialLetterIcon mIcon;
+    private ImageView mIcon;
     private static final Random RANDOM = new Random();
     private final TypedValue mTypedValue = new TypedValue();
-    private int[] mMaterialColors;
+   // private int[] mMaterialColors;
     public ClientFragment() {
         // Required empty public constructor
     }
@@ -104,7 +107,7 @@ public class ClientFragment extends Fragment {
         });
         listview = (ListView) view.findViewById(R.id.listcustomer);
 
-        mIcon = (MaterialLetterIcon) view.findViewById(R.id.icon);
+        mIcon = (ImageView) view.findViewById(R.id.icon);
         ArrayList<String> list = new ArrayList<>();
         ArrayAdapter adapter = new ArrayAdapter<String>(getContext(), R.layout.list_client_item,R.id.custinfo,list);
         listview.setAdapter(adapter);
@@ -140,14 +143,21 @@ public class ClientFragment extends Fragment {
                                 String n = list.get(position);
                                // Toast.makeText(getContext(),n,Toast.LENGTH_LONG).show();
                                 String[] a = n.split("\n");
-                                String name = a[0];
+                                String cin = a[0];
                                 list.remove(n);
                                 adapter.notifyDataSetChanged();
-                                deleteRecord(name);
+                                deleteRecord(cin);
 
                             }
                         }).setNegativeButton("No",null).show();
                 return true;
+            }
+        });
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                showupdate();
             }
         });
 
@@ -162,12 +172,12 @@ public class ClientFragment extends Fragment {
         Intent teacher = new Intent(getContext(), ClientAdd.class);
         startActivity(teacher);
     }
-    public void deleteRecord(String name){
+    public void deleteRecord(String cin){
         //DatabaseReference reference = FirebaseDatabase.getInstance().getReference("customers").child(id);
         //Task<Void> mTask = reference.removeValue();
         //reference.removeValue();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        Query applesQuery = ref.child("customers").orderByChild("name").equalTo(name);
+        Query applesQuery = ref.child("customers").orderByChild("cin").equalTo(cin);
 
         applesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -182,7 +192,42 @@ public class ClientFragment extends Fragment {
                 //Log.e(TAG, "onCancelled", databaseError.toException());
             }
         });
-
-
     }
+    public void showupdate(){
+        AlertDialog.Builder mDialog = new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = getLayoutInflater();
+        View mDialogView = inflater.inflate(R.layout.update_dialog_client,null);
+        mDialog.setView(mDialogView);
+        mDialog.setTitle("Updating");
+        mDialog.show();
+        AppCompatButton btn = mDialogView.findViewById(R.id.update);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"update",Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+    /*public Client retrievedata(String cin){
+        Client[] c = null;
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("customers");
+        reference.orderByChild("cin").equalTo(cin).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                    //(String name, String telephone, String email, String addresse, String cin)
+                    String name = ds.child("name").getValue(String.class);
+                    String tel = ds.child("telephone").getValue(String.class);
+                    String email = ds.child("email").getValue(String.class);
+                    String add = ds.child("addresse").getValue(String.class);
+                    String cc = ds.child("cin").getValue(String.class);
+                    c = new (name,tel,email,add,cc);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+    return c;}*/
 }

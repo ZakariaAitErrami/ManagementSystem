@@ -48,7 +48,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return name+"\n"+telephone;
+        return cin+"\n"+name+"\n"+telephone;
     }
 
     public String getCin() {

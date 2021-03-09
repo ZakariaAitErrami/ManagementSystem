@@ -3,9 +3,11 @@
     android:layout_marginTop="0dp"
      android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.github.ivbaranov.mli.MaterialLetterIcon
+    <ImageView
         android:id="@+id/icon"
         android:layout_width="40dp"
+        android:background="@drawable/user1"
+        android:layout_centerVertical="true"
         android:layout_height="40dp" />
 
 
@@ -19,3 +21,5 @@
         android:textStyle="bold"/>
 
 </RelativeLayout>
+  <!--  com.github.ivbaranov.mli.MaterialLetterIcon
+    android:id="@+id/icon" -->
