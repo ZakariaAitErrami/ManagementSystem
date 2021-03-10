@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -59,6 +60,7 @@ public class ClientFragment extends Fragment {
     private int mBackground;
     private ImageButton btnadd;
     private ListView listview;
+    static String idFirebase;
     //MaterialLetterIcon mIcon;
     private ImageView mIcon;
     private static final Random RANDOM = new Random();
@@ -157,7 +159,35 @@ public class ClientFragment extends Fragment {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showupdate();
+                String info = list.get(position);
+                String [] infoArray = info.split("\n");
+                String ID = infoArray[0];
+
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("customers");
+                reference.orderByChild("cin").equalTo(ID).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for(DataSnapshot ds : dataSnapshot.getChildren()){
+                             idFirebase = ds.getKey(); //it returns the id firebase of the clicked customer in firebase
+                            //(String name, String telephone, String email, String addresse, String cin)
+                            String name = ds.child("name").getValue(String.class);
+                            String tel = ds.child("telephone").getValue(String.class);
+                            String email = ds.child("email").getValue(String.class);
+                            String add = ds.child("addresse").getValue(String.class);
+                            String cc = ds.child("cin").getValue(String.class);
+                            showupdate(name,tel,email,add,cc);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        throw databaseError.toException();
+                    }
+                });
+
+
+
+
+               // showupdate(name,"a","a","a",ID);
             }
         });
 
@@ -193,7 +223,7 @@ public class ClientFragment extends Fragment {
             }
         });
     }
-    public void showupdate(){
+    public void showupdate(String name, String telephone, String email, String add, String cin){
         AlertDialog.Builder mDialog = new AlertDialog.Builder(getContext());
         LayoutInflater inflater = getLayoutInflater();
         View mDialogView = inflater.inflate(R.layout.update_dialog_client,null);
@@ -201,33 +231,38 @@ public class ClientFragment extends Fragment {
         mDialog.setTitle("Updating");
         mDialog.show();
         AppCompatButton btn = mDialogView.findViewById(R.id.update);
+        EditText custid = mDialogView.findViewById(R.id.idcustomer);
+        EditText custname = mDialogView.findViewById(R.id.customername);
+        EditText custphone = mDialogView.findViewById(R.id.phone);
+        EditText custmail = mDialogView.findViewById(R.id.email);
+        EditText custadd = mDialogView.findViewById(R.id.address);
+        custid.setText(cin);
+        custname.setText(name);
+        custphone.setText(telephone);
+        custmail.setText(email);
+        custadd.setText(add);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"update",Toast.LENGTH_LONG).show();
+                String cin = custid.getText().toString();
+                String name = custname.getText().toString();
+                String tele = custphone.getText().toString();
+                String email = custmail.getText().toString();
+                String add = custadd.getText().toString();
+                update(idFirebase,cin,name,tele,email,add);
+                displayHome();
+                Toast.makeText(getContext(),"Customer data updated successfully",Toast.LENGTH_LONG).show();
             }
         });
     }
-    /*public Client retrievedata(String cin){
-        Client[] c = null;
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("customers");
-        reference.orderByChild("cin").equalTo(cin).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds : dataSnapshot.getChildren()){
-                    //(String name, String telephone, String email, String addresse, String cin)
-                    String name = ds.child("name").getValue(String.class);
-                    String tel = ds.child("telephone").getValue(String.class);
-                    String email = ds.child("email").getValue(String.class);
-                    String add = ds.child("addresse").getValue(String.class);
-                    String cc = ds.child("cin").getValue(String.class);
-                    c = new (name,tel,email,add,cc);
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                throw databaseError.toException();
-            }
-        });
-    return c;}*/
+    public void update(String ID,String cin,String name,String tele,String email, String add) {
+        DatabaseReference DbRef = FirebaseDatabase.getInstance().getReference("customers").child(ID);
+        //(String name, String telephone, String email, String addresse, String cin)
+        Client c = new Client(name, tele, email, add, cin);
+        DbRef.setValue(c);
+    }
+    public void displayHome(){
+        Intent teacher = new Intent(getContext(), drawer_activity.class);
+        startActivity(teacher);
+    }
 }
