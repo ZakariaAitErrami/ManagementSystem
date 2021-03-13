@@ -1,14 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context=".FragementMenu.MarchandiseAdd">
-    <include layout="@layout/toolbarc" android:id="@+id/toolbarc"/>
-    <TextView
+
+    <include
+        android:id="@+id/toolbarc"
+        layout="@layout/toolbarc" />
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add merchan form"/>
+        android:layout_marginTop="20dp"
+        android:padding="16dp"
+        tools:context=".FragementMenu.MarchandiseAdd">
 
+        <Button
+            android:id="@+id/button_choose_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#024488"
+            android:text="Choose an image"
+            android:textAllCaps="false"
+            android:textSize="13dp" />
+
+        <EditText
+            android:id="@+id/reference"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_toRightOf="@id/button_choose_image"
+            android:hint="Enter the reference"
+            android:inputType="text"
+            android:maxLines="1" />
+
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_choose_image"
+            android:layout_marginTop="12dp"
+            android:drawableLeft="@drawable/description"
+            android:hint="Enter the merchandise description"
+            android:inputType="text"
+            android:maxLines="2" />
+
+        <EditText
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/description"
+            android:layout_marginTop="12dp"
+            android:drawableLeft="@drawable/euro"
+            android:hint="Enter the price"
+            android:inputType="number" />
+        <ImageView
+            android:layout_marginTop="12dp"
+            android:id="@+id/image_view"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@id/price"/>
+        <ProgressBar
+            android:layout_marginTop="16dp"
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_view"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+
+    </RelativeLayout>
 </LinearLayout>
