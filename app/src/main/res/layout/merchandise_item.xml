@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/image_view_upload"
+                android:layout_width="150dp"
+                android:layout_height="160dp"/>
+            <TextView
+                android:id="@+id/barcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/image_view_upload"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="12"/>
+            <TextView
+                android:id="@+id/desc"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginVertical="30dp"
+                android:layout_below="@+id/barcode"
+                android:layout_toRightOf="@+id/image_view_upload"
+                android:text="descriptipn"/>
+            <TextView
+                android:id="@+id/prix"
+                android:layout_width="wrap_content"
+                android:textSize="20sp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/image_view_upload"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/desc"
+                android:text="price" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

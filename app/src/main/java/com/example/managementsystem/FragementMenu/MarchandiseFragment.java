@@ -3,20 +3,39 @@ package com.example.managementsystem.FragementMenu;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.example.managementsystem.Classes.Marchandise;
 import com.example.managementsystem.R;
 import com.example.managementsystem.drawer_activity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MarchandiseFragment extends Fragment {
     private Button addMer;
+    private RecyclerView mRecyclerView;
+    private ImageAdapter mAdapter;
+    private DatabaseReference mDatabaseRef;
+    private List<Marchandise> mUploads;
+    private ProgressBar mProgressCircle;
     public MarchandiseFragment() {
         // Required empty public constructor
     }
@@ -38,7 +57,31 @@ public class MarchandiseFragment extends Fragment {
                 displayFormMerchandise();
             }
         });
+        mRecyclerView = view.findViewById(R.id.recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mProgressCircle = view.findViewById(R.id.progress_circle);
+        mUploads = new ArrayList<>();
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("merchandises");
+        mDatabaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot : snapshot.getChildren()){
+                    Marchandise upload = postSnapshot.getValue(Marchandise.class);
+                    mUploads.add(upload);
+                }
+                mAdapter = new ImageAdapter(getContext(),mUploads);
+                mRecyclerView.setAdapter(mAdapter);
+                mProgressCircle.setVisibility(View.INVISIBLE);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                //Toast.makeText(getContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
+                mProgressCircle.setVisibility(View.INVISIBLE);
+            }
+        });
         return view;
     }
     public void displayFormMerchandise(){

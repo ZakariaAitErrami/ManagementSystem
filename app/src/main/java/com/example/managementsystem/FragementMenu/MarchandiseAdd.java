@@ -132,10 +132,15 @@ public class MarchandiseAdd extends AppCompatActivity {
                         }
                     },500);
                     Toast.makeText(MarchandiseAdd.this,"Merchandise data successfully uploaded",Toast.LENGTH_LONG).show();
-                    Marchandise upload = new Marchandise(taskSnapshot.getUploadSessionUri().toString(), reference.getText().toString().trim(),
-                            description.getText().toString().trim(),price.getText().toString());
-                    String uploadId = mDatabaseref.push().getKey();
-                    mDatabaseref.child(uploadId).setValue(upload);
+                    if(reference.getText().toString().isEmpty() || description.getText().toString().isEmpty() || price.getText().toString().isEmpty()){
+                        Toast.makeText(MarchandiseAdd.this,"Please fill up all the fields",Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Marchandise upload = new Marchandise(taskSnapshot.getUploadSessionUri().toString(), reference.getText().toString().trim(),
+                                description.getText().toString().trim(),price.getText().toString());
+                        String uploadId = mDatabaseref.push().getKey();
+                        mDatabaseref.child(uploadId).setValue(upload);
+                    }
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -150,7 +155,7 @@ public class MarchandiseAdd extends AppCompatActivity {
                 }
             });
         }else{
-            Toast.makeText(this,"No file selected",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"No image is selected",Toast.LENGTH_SHORT).show();
         }
     }
 }
