@@ -1,10 +1,13 @@
 package com.example.managementsystem.Classes;
 
+import com.google.firebase.database.Exclude;
+
 public class Marchandise {
     private String mImageUrl;
     private String reference;
     private String description;
     private String price;
+    private String mKey;
     public Marchandise(){
 
     }
@@ -46,5 +49,13 @@ public class Marchandise {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+    @Exclude
+    public String getKey() {
+        return mKey;
+    }
+    @Exclude
+    public void setKey(String mKey) {
+        this.mKey = mKey;
     }
 }

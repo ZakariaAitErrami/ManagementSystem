@@ -19,11 +19,14 @@ import android.widget.Toast;
 import com.example.managementsystem.Classes.Marchandise;
 import com.example.managementsystem.R;
 import com.example.managementsystem.drawer_activity;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.w3c.dom.Text;
 
@@ -36,6 +39,8 @@ public class MarchandiseFragment extends Fragment implements ImageAdapter.OnItem
     private RecyclerView mRecyclerView;
     private ImageAdapter mAdapter;
     private DatabaseReference mDatabaseRef;
+    private FirebaseStorage mStorage;
+    private ValueEventListener mDBListener;
     private List<Marchandise> mUploads;
     private ProgressBar mProgressCircle;
     public MarchandiseFragment() {
@@ -64,17 +69,23 @@ public class MarchandiseFragment extends Fragment implements ImageAdapter.OnItem
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mProgressCircle = view.findViewById(R.id.progress_circle);
         mUploads = new ArrayList<>();
+
+        mAdapter = new ImageAdapter(getContext(),mUploads);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(MarchandiseFragment.this);
+
+        mStorage = FirebaseStorage.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("merchandises");
-        mDatabaseRef.addValueEventListener(new ValueEventListener() {
+        mDBListener = mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                mUploads.clear();
                 for (DataSnapshot postSnapshot : snapshot.getChildren()){
                     Marchandise upload = postSnapshot.getValue(Marchandise.class);
+                    upload.setKey(postSnapshot.getKey());
                     mUploads.add(upload);
                 }
-                mAdapter = new ImageAdapter(getContext(),mUploads);
-                mRecyclerView.setAdapter(mAdapter);
-                mAdapter.setOnItemClickListener(MarchandiseFragment.this);
+                mAdapter.notifyDataSetChanged();
                 mProgressCircle.setVisibility(View.INVISIBLE);
             }
 
@@ -107,6 +118,22 @@ public class MarchandiseFragment extends Fragment implements ImageAdapter.OnItem
 
     @Override
     public void onDeleteClick(int position) {
-        Toast.makeText(getContext(),"Delete Click at position: "+ position,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(),"Delete Click at position: "+ position,Toast.LENGTH_SHORT).show();
+        Marchandise selectedItem = mUploads.get(position);
+        String selectedKey = selectedItem.getKey();
+        StorageReference imageRef = mStorage.getReferenceFromUrl(selectedItem.getmImageUrl());
+        imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                mDatabaseRef.child(selectedKey).removeValue();
+                Toast.makeText(getContext(), "Merchandise deleted", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mDatabaseRef.removeEventListener(mDBListener);
     }
 }
