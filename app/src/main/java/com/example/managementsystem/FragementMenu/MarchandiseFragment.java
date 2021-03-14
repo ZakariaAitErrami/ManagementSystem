@@ -25,11 +25,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MarchandiseFragment extends Fragment {
+public class MarchandiseFragment extends Fragment implements ImageAdapter.OnItemClickListener {
     private Button addMer;
     private RecyclerView mRecyclerView;
     private ImageAdapter mAdapter;
@@ -72,6 +74,7 @@ public class MarchandiseFragment extends Fragment {
                 }
                 mAdapter = new ImageAdapter(getContext(),mUploads);
                 mRecyclerView.setAdapter(mAdapter);
+                mAdapter.setOnItemClickListener(MarchandiseFragment.this);
                 mProgressCircle.setVisibility(View.INVISIBLE);
             }
 
@@ -87,5 +90,23 @@ public class MarchandiseFragment extends Fragment {
     public void displayFormMerchandise(){
         Intent teacher = new Intent(getContext(), MarchandiseAdd.class);
         startActivity(teacher);
+    }
+
+    //implements the method of OnClickListeneer that We create in Image Adapter class
+
+
+    @Override
+    public void onItemClick(int position) {
+        Toast.makeText(getContext(),"Normal Click at position: "+ position,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onWhatEverClick(int position) {
+        Toast.makeText(getContext(),"MODIFY Click at position: "+ position,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDeleteClick(int position) {
+        Toast.makeText(getContext(),"Delete Click at position: "+ position,Toast.LENGTH_SHORT).show();
     }
 }
