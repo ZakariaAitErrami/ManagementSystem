@@ -36,7 +36,8 @@ public class ImageAdapter extends RecyclerView.Adapter <ImageAdapter.ImageViewHo
         holder.textviewBarCode.setText(uploadCurrent.getReference());
         holder.textPrice.setText(uploadCurrent.getPrice());
         holder.textDescription.setText(uploadCurrent.getDescription());
-        Picasso.with(mContext).load(uploadCurrent.getmImageUrl()).fit().centerCrop().into(holder.imageView);
+       Picasso.with(mContext).load(uploadCurrent.getmImageUrl()).fit().centerCrop().into(holder.imageView);
+      //  Picasso.with(mContext).load(uploadCurrent.getmImageUrl()).into(holder.imageView);
         //.placeholder(R.mipmap.ic_launcher)
         //.fit().placeholder(R.mipmap.ic_launcher)
     }

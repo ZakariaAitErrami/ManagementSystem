@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -20,9 +21,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.managementsystem.Classes.Marchandise;
+import com.example.managementsystem.MainActivity;
 import com.example.managementsystem.R;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -117,7 +122,7 @@ public class MarchandiseAdd extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
     private void uploadFile(){
-        if(mImageUri != null){
+        /*if(mImageUri != null){
             StorageReference fileReferenece = mStorageRef.child(System.currentTimeMillis()
             +"."+getFileExtension(mImageUri)); //it create a big number+jpg or png (the file name
 
@@ -156,6 +161,44 @@ public class MarchandiseAdd extends AppCompatActivity {
             });
         }else{
             Toast.makeText(this,"No image is selected",Toast.LENGTH_SHORT).show();
+        }*/
+
+        if (mImageUri != null) {
+            final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
+                    + "." + getFileExtension(mImageUri));
+
+            fileReference.putFile(mImageUri).continueWithTask(
+                    new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                        @Override
+                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                            if (!task.isSuccessful()) {
+                                throw task.getException(); }
+                            return fileReference.getDownloadUrl();
+                        } })
+                    .addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if (task.isSuccessful()) { Uri downloadUri = task.getResult();
+                            String p = price.getText().toString();
+                            String pp = p.concat(" Dhs");
+                                Marchandise upload = new Marchandise(downloadUri.toString(),reference.getText().toString().trim(),
+                                        description.getText().toString().trim(),pp);
+                                mDatabaseref.push().setValue(upload);
+                                Toast.makeText(MarchandiseAdd.this, "Upload successful", Toast.LENGTH_LONG).show();
+                            }
+                            else { Toast.makeText(MarchandiseAdd.this, "upload failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(MarchandiseAdd.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+        } else {
+            Toast.makeText(this, "No file selected", Toast.LENGTH_LONG).show();
         }
     }
+
 }
