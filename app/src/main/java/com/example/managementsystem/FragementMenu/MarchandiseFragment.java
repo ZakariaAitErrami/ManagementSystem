@@ -1,9 +1,12 @@
 package com.example.managementsystem.FragementMenu;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -31,7 +35,9 @@ import com.google.firebase.storage.StorageReference;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class MarchandiseFragment extends Fragment implements ImageAdapter.OnItemClickListener {
@@ -113,7 +119,34 @@ public class MarchandiseFragment extends Fragment implements ImageAdapter.OnItem
 
     @Override
     public void onWhatEverClick(int position) {
-        Toast.makeText(getContext(),"MODIFY Click at position: "+ position,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(),"MODIFY Click at position: "+ position,Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder mDialog = new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = getLayoutInflater();
+
+
+        View mDialogView = inflater.inflate(R.layout.update_dialog_marchandise,null);
+        mDialog.setView(mDialogView);
+        mDialog.setTitle("Updating");
+        mDialog.show();
+        AppCompatButton btn = mDialogView.findViewById(R.id.update_merchandise);
+        EditText ref = mDialogView.findViewById(R.id.reference_update);
+        EditText price = mDialogView.findViewById(R.id.price_update);
+        EditText des = mDialogView.findViewById(R.id.description_update);
+        Marchandise selectedItem = mUploads.get(position);
+        ref.setText(selectedItem.getReference());
+        price.setText(selectedItem.getPrice());
+        des.setText(selectedItem.getDescription());
+        String selectedKey = selectedItem.getKey();
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDatabaseRef = FirebaseDatabase.getInstance().getReference("merchandises");
+                mDatabaseRef.child(selectedKey).child("price").setValue(price.getText().toString());
+                mDatabaseRef.child(selectedKey).child("reference").setValue(ref.getText().toString());
+                mDatabaseRef.child(selectedKey).child("description").setValue(des.getText().toString());
+                Toast.makeText(getContext(),"Merchandise data successfully updated",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
