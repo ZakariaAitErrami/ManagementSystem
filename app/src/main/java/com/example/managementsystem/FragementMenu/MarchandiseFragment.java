@@ -17,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
+import android.widget.ListAdapter;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -72,6 +74,7 @@ public class MarchandiseFragment extends Fragment implements ImageAdapter.OnItem
         });
         mRecyclerView = view.findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mProgressCircle = view.findViewById(R.id.progress_circle);
         mUploads = new ArrayList<>();

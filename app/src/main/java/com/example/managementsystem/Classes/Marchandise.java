@@ -8,6 +8,7 @@ public class Marchandise {
     private String description;
     private String price;
     private String mKey;
+    private int quantity;
     public Marchandise(){
 
     }
@@ -17,6 +18,11 @@ public class Marchandise {
         this.reference = reference;
         this.description = description;
         this.price = price;
+    }
+    public Marchandise(String description,String price,int quantity){
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
     }
 
     public String getmImageUrl() {
