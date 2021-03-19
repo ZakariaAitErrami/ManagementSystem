@@ -49,6 +49,7 @@ public class FactureAdd extends AppCompatActivity {
     private Spinner mardescSpinner;
     private DatabaseReference dbRefCustomer;
     private DatabaseReference dbRefMerchandise;
+    private DatabaseReference dbRefFacture;
     private ValueEventListener listener;
     private ArrayAdapter<String> adapter;
     private ArrayList<String> spinnerData;
@@ -66,8 +67,9 @@ public class FactureAdd extends AppCompatActivity {
     private ArrayList<String> data;
     private ArrayList<String> data1;
     private ArrayList<String> data2;
-
+    private Button savePdf;
     private TableLayout table;
+    private ArrayList<Marchandise> m;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +77,9 @@ public class FactureAdd extends AppCompatActivity {
         setContentView(R.layout.activity_facture_add);
         btnHide = findViewById(R.id.addC);
         btnHide.setVisibility(ImageView.INVISIBLE);
+
+        m = new ArrayList<Marchandise>();
+
         txt = findViewById(R.id.textbar);
         txt.setText("Facture");
         back = findViewById(R.id.back);
@@ -101,6 +106,8 @@ public class FactureAdd extends AppCompatActivity {
         retrieveMerchandiseSpinner();
 
         eprix = (EditText) findViewById(R.id.Price);
+
+        savePdf = findViewById(R.id.SavePdf);
 
         //show the calendar
         edDate = (EditText) findViewById(R.id.date);
@@ -146,6 +153,7 @@ public class FactureAdd extends AppCompatActivity {
             }
         });
 
+        dbRefFacture = FirebaseDatabase.getInstance().getReference().child("Bill");
         eID = (EditText) findViewById(R.id.billID);
         eQuantity = (EditText) findViewById(R.id.quantity);
         data = new ArrayList<String>();
@@ -158,18 +166,48 @@ public class FactureAdd extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(FactureAdd.this,mardescSpinner.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
-                addMarchandise();
+                addMarchandise();//implementing the arraylist and the tableLyout
             }
         });
+
+        savePdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String id = eID.getText().toString();
+                String da = edDate.getText().toString();
+                String n = customerName.getSelectedItem().toString();
+                Facture f =new Facture(id,da,n,m);
+                dbRefFacture.push().setValue(f);
+                m.clear();
+                Toast.makeText(FactureAdd.this,"The bill was added successfully",Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(getIntent());
+            }
+        });
+
     }
 
     public void addMarchandise(){
+      //  String id = eID.getText().toString();
+       // String da = edDate.getText().toString();
+        //String n = customerName.getSelectedItem().toString();
+        //ArrayList<Marchandise> m = new ArrayList<Marchandise>();
+    //    Marchandise m1 = new Marchandise("oo","15",4);
+      //  m.add(m1);
+        //Facture f = new Facture(id,da,n,m);
+        //String key = dbRefFacture.push().getKey();
+        //dbRefFacture.child(key).setValue(f);
+        //Toast.makeText(FactureAdd.this,key,Toast.LENGTH_SHORT).show();
+
         String prod = mardescSpinner.getSelectedItem().toString();
         String pr = eprix.getText().toString(); String [] p = pr.split(" ");
         String pp = p[0];
         int price =Integer.parseInt(pp);
         int qt = Integer.parseInt(eQuantity.getText().toString());
         int tot = price*qt;
+
+        Marchandise marchandise = new Marchandise(prod,pp + " Dhs",eQuantity.getText().toString());
+        m.add(marchandise);
 
         data.add(prod);
         data1.add(String.valueOf(qt));
@@ -192,11 +230,14 @@ public class FactureAdd extends AppCompatActivity {
             t3.setText(t);
             sum+=Integer.parseInt(t);
             toatBill.setText(sum+" Dhs");
+          //  Marchandise m = new Marchandise(pro,pp,Integer.parseInt(q));
+           // dbRefFacture.child(key).child("merchandises").push().setValue(m);
         }
         row.addView(t1);
         row.addView(t2);
         row.addView(t3);
         table.addView(row);
+        eQuantity.setText("");
     }
 
     public void retrieveCustomerSpinner(){

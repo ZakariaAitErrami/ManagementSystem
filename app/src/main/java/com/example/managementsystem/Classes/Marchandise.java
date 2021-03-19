@@ -8,7 +8,7 @@ public class Marchandise {
     private String description;
     private String price;
     private String mKey;
-    private int quantity;
+    private String quantity;
     public Marchandise(){
 
     }
@@ -19,9 +19,18 @@ public class Marchandise {
         this.description = description;
         this.price = price;
     }
-    public Marchandise(String description,String price,int quantity){
+
+    public Marchandise(String description, String price, String quantity) {
         this.description = description;
         this.price = price;
+        this.quantity = quantity;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 

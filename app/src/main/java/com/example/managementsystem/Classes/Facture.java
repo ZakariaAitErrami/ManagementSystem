@@ -1,19 +1,28 @@
 package com.example.managementsystem.Classes;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Facture {
     private String id;
     private String date;
-    private String name;
-    private ArrayList<Marchandise> marchandises;
+    private String customer;
+    private ArrayList<Marchandise> merchandises;
+    private String fKey;
 
-    public Facture(String id, String date, String name, ArrayList<Marchandise> marchandises) {
+    public Facture(String id, String date, String customer) {
         this.id = id;
         this.date = date;
-        this.name = name;
-        this.marchandises = marchandises;
+        this.customer = customer;
+    }
+
+    public Facture(String id, String date, String customer, ArrayList<Marchandise> merchandises) {
+        this.id = id;
+        this.date = date;
+        this.customer = customer;
+        this.merchandises = merchandises;
     }
 
     public String getId() {
@@ -32,19 +41,28 @@ public class Facture {
         this.date = date;
     }
 
-    public String getName() {
-        return name;
+    public String getCustomer() {
+        return customer;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCustomer(String customer) {
+        this.customer = customer;
     }
 
-    public ArrayList<Marchandise> getMarchandises() {
-        return marchandises;
+    public ArrayList<Marchandise> getMerchandises() {
+        return merchandises;
     }
 
-    public void setMarchandises(ArrayList<Marchandise> marchandises) {
-        this.marchandises = marchandises;
+    public void setMerchandises(ArrayList<Marchandise> merchandises) {
+        this.merchandises = merchandises;
+    }
+
+    @Exclude
+    public String getfKey() {
+        return fKey;
+    }
+    @Exclude
+    public void setfKey(String fKey) {
+        this.fKey = fKey;
     }
 }
