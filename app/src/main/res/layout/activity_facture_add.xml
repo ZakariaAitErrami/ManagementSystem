@@ -71,29 +71,29 @@
             android:layout_height="wrap_content"/>
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:textStyle="bold"
-            android:textSize="15dp"
-            android:layout_height="wrap_content"
-            android:text="Quantity"/>
         <EditText
             android:id="@+id/quantity"
-            android:layout_marginLeft="15dp"
+            android:hint="Quantity"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
             android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
-    </LinearLayout>
+        <EditText
+            android:id="@+id/Price"
+            android:hint="Price"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:enabled="false"
+            android:textColor="@color/black"
+            android:layout_marginLeft="20dp"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     <Button
+        android:id="@+id/addM"
         android:layout_width="256dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
@@ -102,4 +102,79 @@
         android:backgroundTint="#2A29E8"
         android:text="Add the merchandise"/>
     <!-- Here insert the layout and the table-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*"
+            android:id="@+id/tb1">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tbrow1">
+                <TextView
+                    android:id="@+id/t1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#2A29E8"
+                    android:text="Merchandise"/>
+                <TextView
+                    android:id="@+id/t2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#2A29E8"
+                    android:text="Quantity"/>
+                <TextView
+                    android:id="@+id/t3"
+                    android:layout_width="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:textColor="#2A29E8"
+                    android:text="Total price"/>
+            </TableRow>
+        </TableLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="The total price of the bill is: "
+                android:textColor="#2A29E8"/>
+            <TextView
+                android:id="@+id/prixTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/lightblue"
+                android:layout_marginTop="15dp"
+                android:padding="5dp"
+                android:text="0 Dh"
+                android:textColor="#2A29E8"/>
+        </LinearLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/SavePdf"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:drawableLeft="@drawable/print"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:textAllCaps="false"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#2A29E8"
+            android:layout_marginBottom="15dp"
+            android:text="Save the bill as PDF"/>
+    </RelativeLayout>
+
 </LinearLayout>
