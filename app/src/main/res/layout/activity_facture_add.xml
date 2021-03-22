@@ -14,15 +14,18 @@
         android:layout_height="wrap_content">
     <EditText
         android:id="@+id/billID"
+
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/bill_icone"
         android:hint="The bill ID"/>
         <EditText
             android:id="@+id/date"
             android:layout_width="match_parent"
+            android:drawableLeft="@drawable/date"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
@@ -71,21 +74,24 @@
             android:layout_height="wrap_content"/>
     </RelativeLayout>
 
-        <EditText
-            android:id="@+id/quantity"
-            android:hint="Quantity"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:inputType="numberDecimal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/quantity"
+        android:hint="Quantity"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:drawableLeft="@drawable/quan"
+        android:digits="0123456789"
+        android:inputType="number|textVisiblePassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
         <EditText
             android:id="@+id/Price"
             android:hint="Price"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:enabled="false"
+            android:drawableLeft="@drawable/price"
             android:textColor="@color/black"
             android:layout_marginLeft="20dp"
             android:inputType="text"
@@ -99,7 +105,7 @@
         android:layout_gravity="center_vertical|center_horizontal"
         android:textAllCaps="false"
         android:layout_marginTop="20dp"
-        android:backgroundTint="#2A29E8"
+        android:background="@drawable/bg_btn"
         android:text="Add the merchandise"/>
     <!-- Here insert the layout and the table-->
     <LinearLayout
@@ -157,6 +163,9 @@
                 android:padding="5dp"
                 android:text="0 Dh"
                 android:textColor="#2A29E8"/>
+
+
+
         </LinearLayout>
     </LinearLayout>
     <RelativeLayout
@@ -169,10 +178,11 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:drawableLeft="@drawable/print"
+
             android:layout_gravity="center_vertical|center_horizontal"
             android:textAllCaps="false"
             android:layout_marginTop="20dp"
-            android:backgroundTint="#2A29E8"
+            android:background="@drawable/bg_btn"
             android:layout_marginBottom="15dp"
             android:text="Save the bill as PDF"/>
     </RelativeLayout>

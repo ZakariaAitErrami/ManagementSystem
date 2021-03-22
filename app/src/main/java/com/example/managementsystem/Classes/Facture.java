@@ -12,6 +12,7 @@ public class Facture {
     private ArrayList<Marchandise> merchandises;
     private String fKey;
 
+
     public Facture(String id, String date, String customer) {
         this.id = id;
         this.date = date;

@@ -22,7 +22,7 @@
         android:text="Add a merchandise"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@android:color/holo_blue_dark"/>
+        android:background="@drawable/bg_btn"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"

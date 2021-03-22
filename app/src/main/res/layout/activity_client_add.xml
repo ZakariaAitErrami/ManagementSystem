@@ -6,37 +6,43 @@
     tools:context=".FragementMenu.ClientAdd"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <include layout="@layout/toolbarc" android:id="@+id/toolbarc"/>
+
+    <include
+        android:id="@+id/toolbarc"
+        layout="@layout/toolbarc"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="4dp" />
+
     <LinearLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:gravity="center"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="220dp"
+        android:orientation="vertical"
         android:paddingLeft="20pt"
-        android:paddingRight="20pt">
+        android:paddingRight="20pt"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="230dp">
         <!-- android:gravity="center" -->
         <EditText
             android:id="@+id/id_client"
-            android:maxLines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16sp"
+
             android:layout_marginBottom="16sp"
             android:drawableLeft="@drawable/id"
-            android:hint="Customer Id" />
+            android:hint="Customer Id"
+            android:maxLines="1" />
+
         <EditText
             android:id="@+id/nom_client"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
             android:layout_marginTop="16sp"
             android:layout_marginBottom="16sp"
             android:drawableLeft="@drawable/name"
-            android:hint="Full name" />
+            android:hint="Full name"
+            android:maxLines="1" />
 
         <EditText
             android:id="@+id/telephone"
@@ -44,20 +50,20 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16sp"
             android:layout_marginBottom="16sp"
-            android:maxLines="1"
             android:drawableLeft="@drawable/phone"
             android:hint="Phone Number"
-            android:inputType="phone" />
+            android:inputType="phone"
+            android:maxLines="1" />
 
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16sp"
-            android:maxLines="1"
             android:layout_marginBottom="16sp"
             android:drawableLeft="@drawable/email"
-            android:hint="Email" />
+            android:hint="Email"
+            android:maxLines="1" />
 
         <EditText
             android:id="@+id/addresse"
