@@ -22,7 +22,7 @@
         android:text="Add a merchandise"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/bg_btn"/>
+        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
@@ -30,6 +30,7 @@
         android:layout_height="match_parent"/>
 </RelativeLayout>
 </FrameLayout>
+<!-- android:background="@drawable/bg_btn" -->
 <!-- <GridView
         android:id="@+id/gridView"
         android:layout_width="0dp"

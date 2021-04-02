@@ -3,7 +3,7 @@
     package="com.example.managementsystem">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ManagementSystem">
-        <activity android:name=".FragementMenu.FactureAdd"></activity>
+        <activity android:name=".FragementMenu.viewpdf"></activity>
+        <activity android:name=".FragementMenu.RetrievePdf" />
+        <activity android:name=".FragementMenu.FactureAdd" />
         <activity android:name=".FragementMenu.MarchandiseAdd" />
         <activity android:name=".FragementMenu.ClientAdd" />
         <activity
