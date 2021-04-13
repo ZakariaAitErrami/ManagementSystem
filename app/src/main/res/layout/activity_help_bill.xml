@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MenuItem.HelpBill">
+    <include
+        android:id="@+id/toolbarc"
+        layout="@layout/toolbarc" />
+    <TextView
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0c4d7d"
+        android:text="How do I fill out the details for a bill?"/>
+    <TextView
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="From the Bill home page, click the add button, then fill in the bill ID, date, choose the concerned consumer, and select the merchandise you want to add, specify the quantity, and click the add the merchandise button. To add more merchandises to the bill, select another time the merchandise you want to add, specify the quantity again, and finally click the save the bill as PDF button."/>
+    <TextView
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0c4d7d"
+        android:text="Where will I find the PDF bill after clicking on save the bill as PDF on my phone?"/>
+    <TextView
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You will find it in the file folder"/>
+    <TextView
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0c4d7d"
+        android:text="How can I upload a pdf bill from the application"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Click on the pdf logo on the home Bill tab, then select the pdf bill from your phone, enter the pdf title, and click upload. If you accidentally selected the wrong pdf from your phone, you can deselect it by clicking on the cancel picture."/>
+    <TextView
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0c4d7d"
+        android:text="How can I get a copy of the bill that was uploaded as a pdf?"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Click on Show Bills to see a list of bills. To access a bill, click on the pdf logo. "/>
+</LinearLayout>
+</ScrollView>

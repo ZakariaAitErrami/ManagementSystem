@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MenuItem.HelpMerchandise">
+    <include
+        android:id="@+id/toolbarc"
+        layout="@layout/toolbarc" />
+    <TextView
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0c4d7d"
+        android:text="How can I add a merchandise?"/>
+    <TextView
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click the add button on the merchandises home page, then pick a picture from your gallery, enter the available quantity in stock, the price without currency (the currency is applied automatically), and the reference, then click the save button to upload the merchandise details."/>
+    <TextView
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:textColor="#0c4d7d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How can I change my password ?"/>
+    <TextView
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick change Password from the toolbar menu, then enter the existing password, the new password, and press the change button."/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:textColor="#0c4d7d"
+        android:text="How can I delete a merchandise  ?"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:text="To delete a merchandise object, press and hold the item you want to delete until a menu appears, then select Delete Item."/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:textColor="#0c4d7d"
+        android:text="How can I modify a merchandise information ?"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:text="To update merchandise data, press and hold the item you want to update until a menu appears, then select update Item. A box dialog with the merchandise data appears; update the data and click the update button."/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:textColor="#0c4d7d"
+        android:text="How can I contact you ?"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:text="You can send email to fatsbill.este@gmail.com or click on the contact us item from the menu and write your message"
+        android:padding="10dp"/>
+</LinearLayout>
+</ScrollView>

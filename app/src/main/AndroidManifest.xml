@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ManagementSystem">
-        <activity android:name=".FragementMenu.viewpdf"></activity>
+        <activity android:name=".MenuItem.HelpBill"></activity>
+        <activity android:name=".MenuItem.HelpMerchandise" />
+        <activity android:name=".MenuItem.ContactUs" />
+        <activity android:name=".MenuItem.HelpCustomers" />
+        <activity android:name=".FragementMenu.viewpdf" />
         <activity android:name=".FragementMenu.RetrievePdf" />
         <activity android:name=".FragementMenu.FactureAdd" />
         <activity android:name=".FragementMenu.MarchandiseAdd" />

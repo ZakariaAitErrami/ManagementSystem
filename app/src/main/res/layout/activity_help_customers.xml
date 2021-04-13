@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MenuItem.HelpCustomers">
+    <include
+    android:id="@+id/toolbarc"
+    layout="@layout/toolbarc" />
+    <TextView
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You can keep track of your Customers ans Suppliers. Fill in their data manually.
+        To add a Customer you have to click on the add button then enter the customer information and click on the save button,
+        the email and the customer id should be unique."/>
+    <TextView
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="In order the update a customer data. First click on the customer that you want to
+        update then a dialog box appeares and it contains the customer data then modify the
+        customer data and click on the update Button"/>
+    <TextView
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To delete a customer from the list. You must long press the item you want to delete,
+        then confirm the deletion by selecting the Yes option."/>
+</LinearLayout>

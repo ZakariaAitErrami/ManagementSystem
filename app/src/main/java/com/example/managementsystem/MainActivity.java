@@ -63,7 +63,11 @@ public class MainActivity extends AppCompatActivity {
                             else{
                                 username.setText("");
                                 password.setText("");
-                                Toast.makeText(MainActivity.this,"Username and password do not match",Toast.LENGTH_LONG).show();
+                               // Toast.makeText(MainActivity.this,"Username and password do not match",Toast.LENGTH_LONG).show();
+                                if(!user.equals(usernam))
+                                    username.setError("Incorrect username");
+                                else if(!pass.equals(passwor))
+                                    password.setError("Incorrect password");
                             }
                         }
 
@@ -82,5 +86,6 @@ public class MainActivity extends AppCompatActivity {
     public void display(){
         Intent teacher = new Intent(this, drawer_activity.class);
         startActivity(teacher);
+        finish();
     }
 }
