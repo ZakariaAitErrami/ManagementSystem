@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/background"
     android:layout_height="match_parent"
     tools:context=".FragementMenu.MarchandiseFragment">
 <RelativeLayout
@@ -12,22 +14,26 @@
         android:layout_width="wrap_content"
         android:layout_centerInParent="true"
         android:layout_height="wrap_content"/>
+
+
     <Button
         android:id="@+id/add_merchandise"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18dp"
-        android:padding="14dp"
-        android:textAllCaps="false"
-        android:text="Add a merchandise"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        />
+        android:layout_width="61dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="280dp"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="568dp"
+        android:background="@drawable/roundbtn"
+        android:clickable="true"
+        android:drawableLeft="@drawable/plus"
+        android:src="@drawable/add"
+        app:backgroundTint="@color/lightblue"></Button>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_marginBottom="60dp"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp" />
 </RelativeLayout>
 </FrameLayout>
 <!-- android:background="@drawable/bg_btn" -->

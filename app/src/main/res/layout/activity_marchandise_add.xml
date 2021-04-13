@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
+    android:background="@drawable/background"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".FragementMenu.MarchandiseAdd">
@@ -29,10 +30,12 @@
 
         <EditText
             android:id="@+id/reference"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/pic"
+            android:layout_width="380dp"
+            android:layout_height="46dp"
+            android:padding="10dp"
+            android:drawableRight="@drawable/pic"
             android:layout_marginLeft="0dp"
+            android:background="@drawable/bg_edt"
             android:layout_toRightOf="@id/button_choose_image"
             android:hint="Enter the reference"
             android:inputType="text"
@@ -40,24 +43,28 @@
 
         <EditText
             android:id="@+id/description"
-            android:layout_width="match_parent"
+            android:layout_width="380dp"
+            android:layout_height="46dp"
 
-            android:layout_height="wrap_content"
             android:layout_below="@id/button_choose_image"
             android:layout_marginTop="12dp"
-            android:drawableLeft="@drawable/desc"
+            android:background="@drawable/bg_edt"
+            android:drawableRight="@drawable/desc"
+            android:padding="10dp"
             android:hint="Enter the merchandise description"
             android:inputType="text"
             android:maxLines="2" />
 
         <EditText
             android:id="@+id/price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edt"
+            android:layout_width="380dp"
+            android:layout_height="46dp"
             android:layout_below="@id/description"
             android:layout_marginTop="12dp"
-            android:drawableLeft="@drawable/price"
+            android:drawableRight="@drawable/price"
             android:hint="Enter the price"
+            android:padding="10dp"
             android:inputType="number" />
         <ImageView
             android:layout_marginTop="12dp"

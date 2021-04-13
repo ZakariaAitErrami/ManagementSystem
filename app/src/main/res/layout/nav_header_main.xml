@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
-    android:background="#c1eaf2"
+    android:background="#ffff"
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -16,8 +16,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="135dp"
-        android:layout_height="95dp"
+        android:layout_width="232dp"
+        android:layout_height="96dp"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="8dp"
         app:srcCompat="@drawable/logo" />
@@ -27,13 +27,13 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="Management System application"
-        android:textColor="#191ba9"
+        android:textColor="#000"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#191ba9"
+        android:textColor="#000"
         android:text="High school of technology essaouira" />
 </LinearLayout>

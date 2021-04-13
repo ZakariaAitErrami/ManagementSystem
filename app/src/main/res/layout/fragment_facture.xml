@@ -1,110 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background2"
     tools:context=".FragementMenu.FactureFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <Button
-            android:id="@+id/add_bill"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:textAllCaps="false"
-            android:padding="16dp"
-            android:textStyle="bold"
-            android:text="Add a bill"/>
-        <TextView
-            android:id="@+id/showUplads"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/add_bill"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="#FFFF00"
-            android:clickable="true"
-            android:layout_marginBottom="8dp"
-            android:layout_marginRight="16dp"
-            android:layout_alignParentRight="true"
-            android:text="Show Bills"/>
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imagebrowse"
+                android:layout_width="175dp"
+                android:layout_height="138dp"
+                android:layout_marginBottom="492dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/upload" />
+
+            <ImageView
+                android:id="@+id/imageupload"
+                android:layout_width="69dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="380dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.953"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/upfile" />
+
+            <EditText
+                android:id="@+id/filetitle"
+                android:layout_width="240dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_edt"
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingLeft="20dp"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filelogo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="52dp"
+                android:layout_marginLeft="52dp"
+                android:layout_marginTop="260dp"
+                android:background="#ADD8EC"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="File Title"
+                android:textAllCaps="true"
+                android:textColor="#000"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/filelogo"
+                android:layout_width="152dp"
+                android:layout_height="162dp"
+                android:layout_marginTop="88dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/pdf" />
+
+            <ImageView
+                android:id="@+id/cancelfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="270dp"
+                android:layout_marginLeft="270dp"
+                android:layout_marginTop="96dp"
+                android:layout_marginEnd="107dp"
+                android:layout_marginRight="107dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/filelogo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/cancel" />
+
+            <TextView
+                android:id="@+id/showUplads"
+                android:layout_width="191dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="260dp"
+                android:layout_marginLeft="260dp"
+                android:layout_marginTop="340dp"
+                android:clickable="true"
+                android:text="Show Bills"
+                android:textColor="#0c4d7d"
+                android:textSize="16dp"
+                android:textStyle="bold"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/add_bill"
+                android:layout_width="61dp"
+                android:layout_height="61dp"
+                android:layout_marginStart="280dp"
+                android:layout_marginLeft="280dp"
+                android:layout_marginTop="568dp"
+                android:background="@drawable/roundbtn"
+                android:drawableLeft="@drawable/plus"
+                android:padding="16dp"
+                app:backgroundTint="#ADD8EC"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imagebrowse"
-            android:layout_width="164dp"
-            android:layout_height="132dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.262"
-            app:srcCompat="@drawable/browse" />
-
-        <ImageView
-            android:id="@+id/imageupload"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.841"
-            app:srcCompat="@drawable/upload" />
-
-        <EditText
-            android:id="@+id/filetitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
-            android:layout_marginBottom="178dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:hint="File Title"
-            app:layout_constraintBottom_toTopOf="@+id/imageupload"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imagebrowse" />
-
-        <ImageView
-            android:id="@+id/filelogo"
-            android:layout_width="152dp"
-            android:layout_height="162dp"
-            android:layout_marginTop="142dp"
-            android:layout_marginBottom="25dp"
-            app:layout_constraintBottom_toTopOf="@+id/filetitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/file" />
-
-        <ImageView
-            android:id="@+id/cancelfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="270dp"
-            android:layout_marginStart="270dp"
-            android:layout_marginTop="96dp"
-            android:layout_marginRight="107dp"
-            android:layout_marginEnd="107dp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/filelogo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/cancel" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context=".FragementMenu.FactureAdd">
     <include
@@ -12,22 +13,26 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <EditText
-        android:id="@+id/billID"
 
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/bill_icone"
-        android:hint="The bill ID"/>
+        <EditText
+            android:id="@+id/billID"
+            android:layout_width="370dp"
+            android:layout_height="41dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:padding="10dp"
+            android:background="@drawable/bg_edt"
+            android:drawableRight="@drawable/bill_icone"
+            android:hint="The bill ID" />
         <EditText
             android:id="@+id/date"
-            android:layout_width="match_parent"
-            android:drawableLeft="@drawable/date"
-            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edt"
+            android:layout_width="370dp"
+            android:layout_height="41dp"
+            android:drawableRight="@drawable/date"
             android:layout_marginTop="10dp"
+            android:padding="10dp"
             android:layout_marginRight="20dp"
             android:inputType="date"
             android:layout_marginLeft="20dp"
@@ -39,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="23dp"
+
             android:textStyle="bold"
             android:textSize="15dp"
             android:text="Customer name"
@@ -76,38 +82,46 @@
 
     <EditText
         android:id="@+id/quantity"
-        android:hint="Quantity"
+        android:layout_width="314dp"
+        android:layout_height="41dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:drawableLeft="@drawable/quan"
+        android:background="@drawable/bg_edt"
         android:digits="0123456789"
+        android:drawableRight="@drawable/quan"
+        android:hint="Quantity"
         android:inputType="number|textVisiblePassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-        <EditText
-            android:id="@+id/Price"
-            android:hint="Price"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:enabled="false"
-            android:drawableLeft="@drawable/price"
-            android:textColor="@color/black"
-            android:layout_marginLeft="20dp"
-            android:inputType="text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        android:padding="10dp" />
+
+    <EditText
+        android:id="@+id/Price"
+        android:layout_width="312dp"
+        android:layout_height="41dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bg_edt"
+        android:drawableRight="@drawable/price"
+        android:enabled="false"
+        android:hint="Price"
+        android:inputType="text"
+        android:padding="10dp"
+        android:textColor="@color/black" />
+
+    <!-- Here insert the layout and the table-->
 
     <Button
         android:id="@+id/addM"
-        android:layout_width="256dp"
+        android:layout_width="246dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
-        android:textAllCaps="false"
         android:layout_marginTop="20dp"
-        android:background="@drawable/bg_btn"
-        android:text="Add the merchandise"/>
-    <!-- Here insert the layout and the table-->
+        android:drawableLeft="@drawable/plus"
+        android:text="Add the merchandise"
+        android:textAllCaps="false"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -126,6 +140,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+
                     android:textColor="#2A29E8"
                     android:text="Merchandise"/>
                 <TextView
@@ -152,6 +168,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
                 android:text="The total price of the bill is: "
                 android:textColor="#2A29E8"/>
             <TextView
@@ -171,20 +188,21 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <Button
             android:id="@+id/SavePdf"
-            android:layout_width="256dp"
+            android:layout_width="222dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:drawableLeft="@drawable/print"
-
             android:layout_gravity="center_vertical|center_horizontal"
-            android:textAllCaps="false"
+
             android:layout_marginTop="20dp"
-            android:background="@drawable/bg_btn"
             android:layout_marginBottom="15dp"
-            android:text="Save the bill as PDF"/>
+            android:background="@drawable/bg_btn"
+            android:drawableLeft="@drawable/print"
+            android:text="Save the bill as PDF"
+            android:textAllCaps="false" />
     </RelativeLayout>
 
 </LinearLayout>

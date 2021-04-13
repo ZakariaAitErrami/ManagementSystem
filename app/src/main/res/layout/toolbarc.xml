@@ -19,13 +19,14 @@
             android:id="@+id/textbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
             android:layout_toEndOf="@id/back"
             android:text="Client"
-            android:textStyle="bold"
             android:textColor="@android:color/white"
-            android:textSize="17sp" />
+            android:textColorHint="#7361f5"
+            android:textSize="17sp"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/addC"

@@ -39,7 +39,7 @@ import static android.app.Activity.RESULT_OK;
 
 
 public class FactureFragment extends Fragment {
-    private Button btnBill;
+    private TextView btnBill;
     private ImageView imagebrowse, imageupload,filelogo,cancelfile;
     private Uri filepath;
     private StorageReference storageReference;
@@ -121,9 +121,28 @@ public class FactureFragment extends Fragment {
         imageupload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                processupload(filepath);
+                if(filepath!=null && filetitle.getText().toString().isEmpty()==false)
+                    processupload(filepath);
+
+                else if (filetitle.getText().toString().isEmpty())
+                    filetitle.setError("Please enter the file title");
+                else
+                    Toast.makeText(getContext(),"No file is selectd! Please select a file",Toast.LENGTH_SHORT).show();
             }
         });
+/*imageupload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(filepath!=null && filetitle.getText().toString().isEmpty()==false)
+                    processupload(filepath);
+
+                else if (filetitle.getText().toString().isEmpty())
+                    filetitle.setError("Please enter the file title");
+                else
+                    Toast.makeText(getContext(),"No file is selectd! Please select a file",Toast.LENGTH_SHORT).show();
+            }
+        });*/
+
 
         return view;
     }
