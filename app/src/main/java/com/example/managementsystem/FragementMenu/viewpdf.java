@@ -41,6 +41,7 @@ public class viewpdf extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
                 Intent myIntent = new Intent(getApplicationContext(), RetrievePdf.class);
                 startActivity(myIntent);
             }

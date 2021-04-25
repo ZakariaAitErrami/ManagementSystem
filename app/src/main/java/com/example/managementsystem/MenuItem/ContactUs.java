@@ -42,7 +42,7 @@ public class ContactUs extends AppCompatActivity {
         btSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:zakaria.ait.errami00@gmail.com"));
+                Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:fastbill.este@gmail.com"));
                 intent.putExtra(Intent.EXTRA_SUBJECT,etSubject.getText().toString());
                 intent.putExtra(Intent.EXTRA_TEXT,etMessage.getText().toString());
                 startActivity(intent);
